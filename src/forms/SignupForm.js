@@ -1,5 +1,9 @@
+import { observer } from "mobx-react";
+
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
+import authStore from "../stores/AuthStore";
 
 class Signup extends Component {
   state = {
@@ -14,6 +18,7 @@ class Signup extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    authStore.signupUser(this.state); // fix this
     alert("I DON'T WORK YET");
   };
 
@@ -62,7 +67,11 @@ class Signup extends Component {
                 />
               </div>
 
-              <button type="submit" className="btn btn-primary">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={authStore.Signup}
+              >
                 Signup
               </button>
               <Link to="/login" className="btn btn-link my-2 my-sm-0">
@@ -76,4 +85,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default observer(Signup);
